@@ -14,17 +14,25 @@ build:
   skip: true  # [win]
   number: {{ build }}
 
-  # add build string so packages can depend on mpi variants explicitly:
+  # add build string so packages can depend on mpi/idxtype variants explicitly:
   # `yaxt * mpi_mpich_*` for mpich
   # `yaxt * mpi_openmpi_*` for openmpi
   # `yaxt * mpi_*` for any mpi
+  # `yaxt * *_idxtype_long_*` for the 64-bit Xt_int build (see idxtype below)
 
   {% set mpi = mpi or "mpich" %}
   {% set mpi_prefix = "mpi_" + mpi %}
-  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}
+  # yaxt's Xt_int index type defaults to a 32-bit int unless configured with
+  # --with-idxtype=long (64-bit). Some consumers (e.g. LFRic, whose halo-index
+  # type is 64-bit) need the 64-bit build; changing the *default* build's ABI
+  # would break existing consumers pinned to today's (32-bit) `yaxt`, so this
+  # is a second, additive, opt-in variant instead -- same pattern as `mpi`.
+  {% set idxtype = idxtype or "int" %}
+  {% set idxtype_suffix = "" if idxtype == "int" else "_idxtype_" + idxtype %}
+  string: {{ mpi_prefix }}{{ idxtype_suffix }}_h{{ PKG_HASH }}_{{ build }}
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
-    - {{ name }} * {{ mpi_prefix }}_*
+    - {{ name }} * {{ mpi_prefix }}{{ idxtype_suffix }}_*
 
 requirements:
   build:
