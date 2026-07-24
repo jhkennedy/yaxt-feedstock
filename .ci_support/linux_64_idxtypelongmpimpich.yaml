@@ -16,6 +16,8 @@ fortran_compiler:
 - gfortran
 fortran_compiler_version:
 - '14'
+idxtype:
+- long
 mpi:
 - mpich
 mpich:
