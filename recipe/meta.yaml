@@ -44,6 +44,12 @@ requirements:
     - libtool
     - make
     - pkg-config
+    # openmpi's mpicc/mpifort wrappers are compiled binaries for the target
+    # arch; when cross-compiling (e.g. osx-64 -> osx-arm64) they can't run on
+    # the build machine, so we need a build-arch copy of openmpi too (mpich's
+    # wrappers are portable shell scripts and don't need this). Same pattern
+    # as conda-forge/libpnetcdf-feedstock.
+    - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
   host:
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
