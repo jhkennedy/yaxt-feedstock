@@ -97,6 +97,34 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_idxtypelongmpiopenmpi" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypeintmpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypeintmpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypeintmpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypeintmpiopenmpi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypelongmpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypelongmpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypelongmpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypelongmpiopenmpi" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
