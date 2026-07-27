@@ -5,13 +5,17 @@ set -x
 autoreconf -vfi
 
 if [[ "${mpi}" == "openmpi" ]]; then
-  # tell the mpicc/mpifort wrappers which compiler to actually invoke --
-  # without this they fall back to whatever compiler openmpi itself was
-  # built with, which breaks cross-compilation (e.g. osx-64 -> osx-arm64):
-  # the wrapper ends up invoking a build-arch compiler while linking
-  # against host-arch (target) MPI libraries.
-  export OMPI_CC="${CC}"
-  export OMPI_FC="${FC}"
+  if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == "1" ]]; then
+    # tell the mpicc/mpifort wrappers which compiler to actually invoke, and
+    # where to find the MPI install -- without these, cross-compiling (e.g.
+    # osx-64 -> osx-arm64) fails configure's basic compiler check, since the
+    # wrapper falls back to build-time defaults baked into the openmpi
+    # package that don't match the cross target. Same fix as used in
+    # conda-forge/scalapack-feedstock.
+    export OMPI_CC="${CC}"
+    export OMPI_FC="${FC}"
+    export OPAL_PREFIX="${PREFIX}"
+  fi
   export MPI_LAUNCH="${PREFIX}/bin/mpirun --oversubscribe"
   export OMPI_MCA_plm_rsh_agent=""
 else
