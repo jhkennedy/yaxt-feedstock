@@ -1,6 +1,6 @@
 {% set name = "yaxt" %}
 {% set version = "0.11.5.1" %}
-{% set build = 2 %}
+{% set build = 3 %}
 
 package:
   name: {{ name }}
@@ -58,6 +58,10 @@ requirements:
     - {{ mpi }}
 
 test:
+  requires:
+    - {{ compiler('c') }}
+  files:
+    - test_idxtype.c
   commands:
     - test -f ${PREFIX}/lib/libyaxt.so  # [linux]
     - test -f ${PREFIX}/lib/libyaxt.dylib  # [osx]
@@ -65,6 +69,13 @@ test:
     - test -f ${PREFIX}/lib/libyaxt_c.dylib  # [osx]
     - test -f ${PREFIX}/include/yaxt.h
     - test -f ${PREFIX}/include/yaxt.mod
+    # autoconf silently ignores an unknown --with-idxtype, so verify the
+    # installed Xt_int actually has the width this build's string promises.
+    # Skipped when cross-compiling (osx_arm64, built from osx_64): the
+    # compiled test binary targets the host arch, not the build machine's,
+    # so it can't be executed here.
+    - ${PREFIX}/bin/mpicc -I${PREFIX}/include -L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib -DXT_EXPECTED_TYPE={{ idxtype }} test_idxtype.c -o test_idxtype -lyaxt  # [build_platform == target_platform]
+    - ./test_idxtype  # [build_platform == target_platform]
 
 about:
   home: https://gitlab.dkrz.de/dkrz-sw/yaxt
