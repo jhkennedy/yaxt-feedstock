@@ -18,18 +18,20 @@ fortran_compiler:
 - gfortran
 fortran_compiler_version:
 - '14'
+idxtype:
+- long
 llvm_openmp:
 - '19'
 macos_machine:
-- x86_64-apple-darwin13.4.0
+- arm64-apple-darwin20.0.0
 mpi:
-- openmpi
+- mpich
 mpich:
 - '5'
 openmpi:
 - '5'
 target_platform:
-- osx-64
+- osx-arm64
 zip_keys:
 - - c_compiler_version
   - fortran_compiler_version

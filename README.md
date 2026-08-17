@@ -42,17 +42,87 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>osx_64_mpimpich</td>
+              <td>linux_aarch64_idxtypeintmpimpich</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_mpimpich" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_idxtypeintmpimpich" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_mpiopenmpi</td>
+              <td>linux_aarch64_idxtypeintmpiopenmpi</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_mpiopenmpi" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_idxtypeintmpiopenmpi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_idxtypelongmpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_idxtypelongmpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_idxtypelongmpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_idxtypelongmpiopenmpi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_idxtypeintmpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_idxtypeintmpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_idxtypeintmpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_idxtypeintmpiopenmpi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_idxtypelongmpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_idxtypelongmpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_idxtypelongmpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_idxtypelongmpiopenmpi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypeintmpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypeintmpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypeintmpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypeintmpiopenmpi" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypelongmpimpich</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypelongmpimpich" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64_idxtypelongmpiopenmpi</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=28400&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/yaxt-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_idxtypelongmpiopenmpi" alt="variant">
                 </a>
               </td>
             </tr>
@@ -186,6 +256,7 @@ Feedstock Maintainers
 
 * [@aaschwanden](https://github.com/aaschwanden/)
 * [@ckhroulev](https://github.com/ckhroulev/)
+* [@ickc](https://github.com/ickc/)
 * [@jhkennedy](https://github.com/jhkennedy/)
 * [@larsbuntemeyer](https://github.com/larsbuntemeyer/)
 

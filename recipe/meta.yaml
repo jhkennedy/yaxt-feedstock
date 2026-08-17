@@ -1,6 +1,6 @@
 {% set name = "yaxt" %}
 {% set version = "0.11.5.1" %}
-{% set build = 2 %}
+{% set build = 3 %}
 
 package:
   name: {{ name }}
@@ -14,17 +14,25 @@ build:
   skip: true  # [win]
   number: {{ build }}
 
-  # add build string so packages can depend on mpi variants explicitly:
+  # add build string so packages can depend on mpi/idxtype variants explicitly:
   # `yaxt * mpi_mpich_*` for mpich
   # `yaxt * mpi_openmpi_*` for openmpi
   # `yaxt * mpi_*` for any mpi
+  # `yaxt * *_idxtype_long_*` for the 64-bit Xt_int build (see idxtype below)
 
   {% set mpi = mpi or "mpich" %}
   {% set mpi_prefix = "mpi_" + mpi %}
-  string: {{ mpi_prefix }}_h{{ PKG_HASH }}_{{ build }}
+  # yaxt's Xt_int index type defaults to a 32-bit int unless configured with
+  # --with-idxtype=long (64-bit). Some consumers (e.g. LFRic, whose halo-index
+  # type is 64-bit) need the 64-bit build; changing the *default* build's ABI
+  # would break existing consumers pinned to today's (32-bit) `yaxt`, so this
+  # is a second, additive, opt-in variant instead -- same pattern as `mpi`.
+  {% set idxtype = idxtype or "int" %}
+  {% set idxtype_suffix = "" if idxtype == "int" else "_idxtype_" + idxtype %}
+  string: {{ mpi_prefix }}{{ idxtype_suffix }}_h{{ PKG_HASH }}_{{ build }}
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
-    - {{ name }} * {{ mpi_prefix }}_*
+    - {{ name }} * {{ mpi_prefix }}{{ idxtype_suffix }}_*
 
 requirements:
   build:
@@ -36,6 +44,12 @@ requirements:
     - libtool
     - make
     - pkg-config
+    # openmpi's mpicc/mpifort wrappers are compiled binaries for the target
+    # arch; when cross-compiling (e.g. osx-64 -> osx-arm64) they can't run on
+    # the build machine, so we need a build-arch copy of openmpi too (mpich's
+    # wrappers are portable shell scripts and don't need this). Same pattern
+    # as conda-forge/libpnetcdf-feedstock.
+    - {{ mpi }}  # [mpi == "openmpi" and build_platform != target_platform]
   host:
     - llvm-openmp  # [osx]
     - libgomp      # [linux]
@@ -44,6 +58,10 @@ requirements:
     - {{ mpi }}
 
 test:
+  requires:
+    - {{ compiler('c') }}
+  files:
+    - test_idxtype.c
   commands:
     - test -f ${PREFIX}/lib/libyaxt.so  # [linux]
     - test -f ${PREFIX}/lib/libyaxt.dylib  # [osx]
@@ -51,6 +69,13 @@ test:
     - test -f ${PREFIX}/lib/libyaxt_c.dylib  # [osx]
     - test -f ${PREFIX}/include/yaxt.h
     - test -f ${PREFIX}/include/yaxt.mod
+    # autoconf silently ignores an unknown --with-idxtype, so verify the
+    # installed Xt_int actually has the width this build's string promises.
+    # Skipped when cross-compiling (osx_arm64, built from osx_64): the
+    # compiled test binary targets the host arch, not the build machine's,
+    # so it can't be executed here.
+    - ${PREFIX}/bin/mpicc -I${PREFIX}/include -L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib -DXT_EXPECTED_TYPE={{ idxtype }} test_idxtype.c -o test_idxtype -lyaxt  # [build_platform == target_platform]
+    - ./test_idxtype  # [build_platform == target_platform]
 
 about:
   home: https://gitlab.dkrz.de/dkrz-sw/yaxt
@@ -70,3 +95,4 @@ extra:
     - ckhroulev
     - aaschwanden
     - larsbuntemeyer
+    - ickc

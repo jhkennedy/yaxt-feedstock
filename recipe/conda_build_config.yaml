@@ -1,3 +1,10 @@
 mpi:
   - mpich
   - openmpi
+
+# int: today's default (32-bit Xt_int), unchanged for existing consumers.
+# long: opt-in 64-bit Xt_int build (e.g. for LFRic); depend on it explicitly
+# via `yaxt * *_idxtype_long_*`.
+idxtype:
+  - int
+  - long
