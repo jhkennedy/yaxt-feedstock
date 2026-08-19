@@ -1,8 +1,3 @@
-azure:
-  # gitlab.dkrz.de rate-limits (HTTP 429) aggressively on concurrent fetches
-  # of the same source tarball; cap concurrency so the osx/linux_aarch64
-  # matrix (16 configs total) doesn't all download it at once.
-  max_parallel: 4
 build_platform:
   osx_arm64: osx_64
 github:
