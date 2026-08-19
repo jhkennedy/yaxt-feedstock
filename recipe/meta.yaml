@@ -1,14 +1,14 @@
 {% set name = "yaxt" %}
 {% set version = "0.11.5.1" %}
-{% set build = 3 %}
+{% set build = 4 %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://gitlab.dkrz.de/dkrz-sw/{{ name }}/-/archive/v{{ version }}/{{ name }}-v{{ version }}.tar.gz
-  sha256: 0bc97acd6cfd8e893318e59daa57e9063cf79644311fc71cdd00597cb89bcc29
+  url: https://github.com/pism/{{ name }}-mirror/archive/v{{ version }}.tar.gz
+  sha256: 6dcf9447dcaafa374079b80cb535f4709f22acf331fff3b877ea6dceb9fa9a74
 
 build:
   skip: true  # [win]
